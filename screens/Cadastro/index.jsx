@@ -10,19 +10,15 @@ export default function Cadastro() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Campos para controlar se há erros nos campos
   const [isEmailError, setIsEmailError] = useState(false);
   const [isPasswordError, setIsPasswordError] = useState(false);
   const [isConfirmPasswordError, setIsConfirmPasswordError] = useState(false);
 
-  // Função para realizar o cadastro e validar os campos
   async function handleRegister() {
-    // Realiza as verificações ao clicar em "Cadastrar"
     const emailIsValid = email.includes("@");
     const passwordIsValid = password.length >= 6;
     const passwordsMatch = password === confirmPassword;
 
-    // Atualiza os estados de erro com base nas verificações
     setIsEmailError(!emailIsValid);
     setIsPasswordError(!passwordIsValid);
     setIsConfirmPasswordError(!passwordsMatch);
@@ -31,17 +27,17 @@ export default function Cadastro() {
       try {
         const res = await apiConfig.post("/user/novo", { email, senha: password });
         if (res.status === 201 || res.status === 200) {
-          Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
+          alert("Sucesso: Cadastro realizado com sucesso!"); // Usando alert para web
           navigation.navigate("Login");
         } else {
-          Alert.alert("Erro", "Ocorreu um erro. Tente novamente.");
+          alert("Erro: Ocorreu um erro. Tente novamente.");
         }
       } catch (error) {
         console.error("Erro ao cadastrar:", error);
-        Alert.alert("Erro", "Erro ao tentar cadastrar. Verifique os dados e tente novamente.");
+        alert("Erro: Erro ao tentar cadastrar. Verifique os dados e tente novamente.");
       }
     } else {
-      Alert.alert("Erro", "Preencha os campos corretamente.");
+      alert("Erro: Preencha os campos corretamente.");
     }
   }
 

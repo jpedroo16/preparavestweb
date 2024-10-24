@@ -1,4 +1,4 @@
-// index.jsx
+
 import React, { useContext } from 'react';
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native';
 import { AvatarContext } from '../../components/avatarcomp'; // Importa o contexto
